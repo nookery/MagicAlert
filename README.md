@@ -20,14 +20,14 @@ Add MagicAlert as a dependency to your `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/yourusername/MagicAlert.git", from: "1.0.0")
+    .package(url: "https://github.com/nookery/MagicAlert.git", from: "1.0.0")
 ]
 ```
 
 Or add it directly in Xcode:
 
 1. Go to File → Add Packages...
-2. Enter the repository URL: `https://github.com/yourusername/MagicAlert.git`
+2. Enter the repository URL: `https://github.com/nookery/MagicAlert.git`
 3. Choose the version you want to use
 
 ## Usage

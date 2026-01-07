@@ -20,14 +20,14 @@
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/yourusername/MagicAlert.git", from: "1.0.0")
+    .package(url: "https://github.com/nookery/MagicAlert.git", from: "1.0.0")
 ]
 ```
 
 或者直接在Xcode中添加：
 
 1. 转到文件 → 添加包...
-2. 输入仓库URL：`https://github.com/yourusername/MagicAlert.git`
+2. 输入仓库URL：`https://github.com/nookery/MagicAlert.git`
 3. 选择您要使用的版本
 
 ## 使用方法
