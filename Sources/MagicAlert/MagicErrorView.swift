@@ -1,5 +1,11 @@
 import SwiftUI
 
+#if os(iOS)
+import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
+
 /// 用于展示详细错误信息的视图组件
 public struct MagicErrorView: View {
     let error: Error
@@ -147,7 +153,14 @@ public struct MagicErrorView: View {
         }
         
         let fullErrorInfo = errorInfo.joined(separator: "\n")
-        fullErrorInfo.copy()
+
+        // 复制到系统粘贴板
+        #if os(iOS)
+        UIPasteboard.general.string = fullErrorInfo
+        #elseif os(macOS)
+        NSPasteboard.general.clearContents()
+        NSPasteboard.general.setString(fullErrorInfo, forType: .string)
+        #endif
         
         showCopied = true
         
