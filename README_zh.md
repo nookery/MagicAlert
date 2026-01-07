@@ -76,7 +76,7 @@ struct ErrorView: View {
     let error: Error
 
     var body: some View {
-        error.makeView(title: "发生错误")
+        MagicErrorView(error: error, title: "发生错误")
     }
 }
 ```

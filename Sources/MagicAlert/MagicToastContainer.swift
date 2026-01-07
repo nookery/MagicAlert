@@ -33,7 +33,8 @@ struct MagicToastContainer: View {
                 // 错误详情视图
                 ForEach(toastManager.toasts.filter { isErrorDetailToast($0) }, id: \.id) { toast in
                     if case let .errorDetail(error, title) = toast.type {
-                        error.makeView(
+                        MagicErrorView(
+                            error: error,
                             title: title,
                             onDismiss: {
                                 toastManager.dismiss(toast.id)
