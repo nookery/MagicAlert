@@ -2,13 +2,12 @@
 
 [![English](https://img.shields.io/badge/English-README-green)](README.md)
 
-一个基于SwiftUI的iOS和macOS应用吐司通知系统。
+一个基于SwiftUI的iOS和macOS应用通知系统。
 
 ## 功能特性
 
-- **吐司通知**: 向用户显示临时消息
-- **多种吐司类型**: 成功、错误、警告和信息吐司
-- **可自定义样式**: 轻松自定义外观和行为
+- **通知**: 向用户显示临时消息
+- **多种类型**: 成功、错误、警告和信息
 - **错误处理**: 内置错误视图组件
 - **原生SwiftUI**: 完全使用SwiftUI构建，适用于现代应用
 
@@ -32,7 +31,45 @@ dependencies: [
 
 ## 使用方法
 
-### 基本吐司使用
+### 便捷方式（推荐）
+
+最简单的使用方式，只需要在您的根视图上添加 `.withMagicToast()` 修饰符：
+
+```swift
+import SwiftUI
+import MagicAlert
+
+struct ContentView: View {
+    var body: some View {
+        VStack {
+            Button("显示成功消息") {
+                MagicMessageProvider.shared.success("操作成功")
+            }
+
+            Button("显示错误消息") {
+                MagicMessageProvider.shared.error("操作失败")
+            }
+
+            Button("显示信息") {
+                MagicMessageProvider.shared.info("这是一条信息")
+            }
+
+            Button("显示警告") {
+                MagicMessageProvider.shared.warning("请注意")
+            }
+
+            Button("显示加载中") {
+                MagicMessageProvider.shared.loading("正在处理...")
+            }
+        }
+        .withMagicToast() // 添加此修饰符启用Toast功能
+    }
+}
+```
+
+### 手动方式
+
+如果您需要更精细的控制，可以手动管理Toast：
 
 ```swift
 import SwiftUI
@@ -49,11 +86,7 @@ struct ContentView: View {
         }
         .onAppear {
             // 显示成功吐司
-            toastManager.showToast(
-                message: "操作成功完成！",
-                type: .success,
-                duration: 3.0
-            )
+            toastManager.success("操作成功完成！")
         }
     }
 }
@@ -83,6 +116,7 @@ struct ErrorView: View {
 
 ## 组件
 
+- `MagicMessageProvider` - 便捷的消息提供者（推荐使用）
 - `MagicToastManager` - 管理吐司通知
 - `MagicToastContainer` - 显示吐司的容器视图
 - `MagicToast` - 单个吐司视图

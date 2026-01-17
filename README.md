@@ -32,7 +32,45 @@ Or add it directly in Xcode:
 
 ## Usage
 
-### Basic Toast Usage
+### Quick Start (Recommended)
+
+The easiest way to use MagicAlert is to add the `.withMagicToast()` modifier to your root view:
+
+```swift
+import SwiftUI
+import MagicAlert
+
+struct ContentView: View {
+    var body: some View {
+        VStack {
+            Button("Show Success") {
+                MagicMessageProvider.shared.success("Operation successful")
+            }
+
+            Button("Show Error") {
+                MagicMessageProvider.shared.error("Operation failed")
+            }
+
+            Button("Show Info") {
+                MagicMessageProvider.shared.info("This is an info message")
+            }
+
+            Button("Show Warning") {
+                MagicMessageProvider.shared.warning("Please be careful")
+            }
+
+            Button("Show Loading") {
+                MagicMessageProvider.shared.loading("Processing...")
+            }
+        }
+        .withMagicToast() // Add this modifier to enable toast functionality
+    }
+}
+```
+
+### Manual Toast Management
+
+For more control, you can manually manage toasts:
 
 ```swift
 import SwiftUI
@@ -49,11 +87,7 @@ struct ContentView: View {
         }
         .onAppear {
             // Show a success toast
-            toastManager.showToast(
-                message: "Operation completed successfully!",
-                type: .success,
-                duration: 3.0
-            )
+            toastManager.success("Operation completed successfully!")
         }
     }
 }
@@ -83,6 +117,7 @@ struct ErrorView: View {
 
 ## Components
 
+- `MagicMessageProvider` - Convenient message provider (recommended)
 - `MagicToastManager` - Manages toast notifications
 - `MagicToastContainer` - Container view for displaying toasts
 - `MagicToast` - Individual toast view
