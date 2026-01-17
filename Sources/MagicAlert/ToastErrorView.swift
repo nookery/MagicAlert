@@ -17,7 +17,7 @@ struct ToastErrorView: View {
         VStack(alignment: .leading, spacing: 16) {
             // 错误图标和标题 + 工具栏
             HStack {
-                Image(systemName: "exclamationmark.triangle.fill")
+                Image.warningIcon
                     .foregroundStyle(.red)
                     .font(.title2)
 
@@ -28,7 +28,7 @@ struct ToastErrorView: View {
                     Spacer()
 
                     Button(action: { error.copy() }) {
-                        Image(systemName: "doc.on.doc")
+                        Image.copyIcon
                             .foregroundStyle(.blue)
                     }
                     .buttonStyle(.borderless)
@@ -39,7 +39,7 @@ struct ToastErrorView: View {
                             onDismiss()
                         }
                     }) {
-                        Image(systemName: "xmark.circle.fill")
+                        Image.closeIcon
                             .foregroundStyle(.red.opacity(0.8))
                             .font(.title)
                     }
