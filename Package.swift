@@ -18,10 +18,6 @@ let package = Package(
     targets: [
         .target(
             name: "MagicAlert"
-        ),
-        .testTarget(
-            name: "MagicAlertTests",
-            dependencies: ["MagicAlert"]
         )
     ]
 )
