@@ -66,33 +66,6 @@ struct ContentView: View {
 }
 ```
 
-### Toast Types
-
-- `.success` - Green success notification
-- `.error` - Red error notification
-- `.warning` - Orange warning notification
-- `.info` - Blue information notification
-
-### Error Display
-
-```swift
-import SwiftUI
-import MagicAlert
-
-struct ErrorView: View {
-    let error: Error
-
-    var body: some View {
-        MagicErrorView(error: error, title: "An error occurred")
-    }
-}
-```
-
-## Components
-
-- `MagicMessageProvider` - Message provider for displaying various types of toasts
-- `MagicErrorView` - Error display component
-
 ## Requirements
 
 - iOS 17.0+

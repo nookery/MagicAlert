@@ -65,33 +65,6 @@ struct ContentView: View {
 }
 ```
 
-### 吐司类型
-
-- `.success` - 绿色成功通知
-- `.error` - 红色错误通知
-- `.warning` - 橙色警告通知
-- `.info` - 蓝色信息通知
-
-### 错误显示
-
-```swift
-import SwiftUI
-import MagicAlert
-
-struct ErrorView: View {
-    let error: Error
-
-    var body: some View {
-        MagicErrorView(error: error, title: "发生错误")
-    }
-}
-```
-
-## 组件
-
-- `MagicMessageProvider` - 消息提供者，用于显示各种类型的Toast
-- `MagicErrorView` - 错误显示组件
-
 ## 要求
 
 - iOS 17.0+
