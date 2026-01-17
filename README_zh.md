@@ -31,9 +31,7 @@ dependencies: [
 
 ## 使用方法
 
-### 便捷方式（推荐）
-
-最简单的使用方式，只需要在您的根视图上添加 `.withMagicToast()` 修饰符：
+在您的根视图上添加 `.withMagicToast()` 修饰符，然后使用 `MagicMessageProvider.shared` 显示消息：
 
 ```swift
 import SwiftUI
@@ -62,32 +60,7 @@ struct ContentView: View {
                 MagicMessageProvider.shared.loading("正在处理...")
             }
         }
-        .withMagicToast() // 添加此修饰符启用Toast功能
-    }
-}
-```
-
-### 手动方式
-
-如果您需要更精细的控制，可以手动管理Toast：
-
-```swift
-import SwiftUI
-import MagicAlert
-
-struct ContentView: View {
-    @StateObject private var toastManager = MagicToastManager()
-
-    var body: some View {
-        ZStack {
-            // 您的主要内容在这里
-
-            MagicToastContainer(toastManager: toastManager)
-        }
-        .onAppear {
-            // 显示成功吐司
-            toastManager.success("操作成功完成！")
-        }
+        .withMagicToast() // 启用Toast功能
     }
 }
 ```
@@ -116,12 +89,8 @@ struct ErrorView: View {
 
 ## 组件
 
-- `MagicMessageProvider` - 便捷的消息提供者（推荐使用）
-- `MagicToastManager` - 管理吐司通知
-- `MagicToastContainer` - 显示吐司的容器视图
-- `MagicToast` - 单个吐司视图
+- `MagicMessageProvider` - 消息提供者，用于显示各种类型的Toast
 - `MagicErrorView` - 错误显示组件
-- `MagicToastType` - 吐司类型枚举
 
 ## 要求
 
