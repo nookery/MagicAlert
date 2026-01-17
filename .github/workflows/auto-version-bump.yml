@@ -25,6 +25,13 @@ jobs:
       - name: Setup Swift
         uses: swift-actions/setup-swift@v2
 
+      - name: Setup GitHub CLI
+        run: |
+          curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+          echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+          sudo apt update
+          sudo apt install gh
+
       - name: Get current version
         id: current-version
         run: |
@@ -53,9 +60,17 @@ jobs:
           # 验证Package.swift语法是否正确
           swift package resolve
 
-      - name: Create git tag
+      - name: Create git tag and release
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git tag "v${{ steps.bump-version.outputs.new_version }}"
           git push origin "v${{ steps.bump-version.outputs.new_version }}"
+
+          # Create GitHub release
+          gh release create "v${{ steps.bump-version.outputs.new_version }}" \
+            --title "Release v${{ steps.bump-version.outputs.new_version }}" \
+            --notes "Automatic version bump to v${{ steps.bump-version.outputs.new_version }}" \
+            --generate-notes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
