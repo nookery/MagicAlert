@@ -5,11 +5,11 @@ import SwiftUI
 struct MagicRootView<Content: View>: View {
     private let content: Content
     private let toastManager = MagicToastManager.shared
-    
+
     init(@ViewBuilder content: () -> Content) {
         self.content = content()
     }
-    
+
     var body: some View {
         content
             .overlay(
@@ -18,12 +18,12 @@ struct MagicRootView<Content: View>: View {
             )
             .environmentObject(toastManager)
     }
-} 
+}
 
 #if DEBUG
-#Preview {
-    MagicToastExampleView()
-        .withMagicToast()
-        .frame(width: 400, height: 600)
-}
+    #Preview {
+        MagicToastExampleView()
+            .withMagicToast()
+            .frame(width: 400, height: 600)
+    }
 #endif

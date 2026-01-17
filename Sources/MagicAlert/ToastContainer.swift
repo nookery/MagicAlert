@@ -3,26 +3,10 @@ import SwiftUI
 /// Toast容器视图
 struct MagicToastContainer: View {
     @ObservedObject var toastManager: MagicToastManager
-    let showDebugInfo: Bool = false
 
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                // 显示容器尺寸的调试视图
-                if showDebugInfo {
-                VStack(alignment: .leading) {
-                    Text(String(format: "容器尺寸: %.0f x %.0f", geometry.size.width, geometry.size.height))
-                        .font(.caption2)
-                        .foregroundColor(.gray)
-                        .padding(4)
-                        .background(Color.accentColor.opacity(0.7))
-                        .cornerRadius(6)
-                        .padding([.top, .leading], 8)
-                    Spacer()
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                }
-                
                 // 普通Toast视图
                 ForEach(toastManager.toasts.filter { !isErrorDetailToast($0) }) { toast in
                     MagicToastView(toast: toast, onDismiss: toastManager.dismiss)
@@ -41,7 +25,7 @@ struct MagicToastContainer: View {
                             }
                         )
                         .frame(width: geometry.size.width * 0.8)
-                        .frame(height: geometry.size.height*0.8)
+                        .frame(height: geometry.size.height * 0.8)
                         .positioned(for: toast.displayMode, in: geometry)
                     }
                 }
