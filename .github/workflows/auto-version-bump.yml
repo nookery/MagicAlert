@@ -9,7 +9,7 @@ on:
 
 jobs:
   version-bump:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout code
@@ -19,7 +19,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Swift
-        uses: swift-actions/setup-swift@v1
+        uses: swift-actions/setup-swift@v2
 
       - name: Get current version
         id: current-version
