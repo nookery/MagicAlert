@@ -57,6 +57,62 @@ struct MagicRootView<Content: View>: View {
     }
 }
 
+// MARK: - Position Extension
+
+extension View {
+    @ViewBuilder
+    func positioned(for displayMode: MagicToastDisplayMode, in geometry: GeometryProxy) -> some View {
+        switch displayMode {
+        case .overlay:
+            self
+                .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+
+        case .banner:
+            VStack {
+                self
+                Spacer()
+            }
+            .padding(.top, 60)
+
+        case .bottom:
+            VStack {
+                Spacer()
+                self
+            }
+            .padding(.bottom, 40)
+
+        case .corner:
+            VStack {
+                HStack {
+                    Spacer()
+                    self
+                }
+                Spacer()
+            }
+            .padding(.top, 60)
+            .padding(.trailing, 20)
+        }
+    }
+
+    /// 应用统一的Toast样式，包括背景、阴影和显示动画
+    func applyToastStyling() -> some View {
+        self
+            .background(
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(.ultraThinMaterial)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16)
+                            .fill(.red.opacity(0.03))
+                    )
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(.red.opacity(0.1), lineWidth: 0.5)
+            )
+            .shadow(color: .black.opacity(0.08), radius: 8, x: 0, y: 4)
+    }
+}
+
 #if DEBUG
 #Preview {
     MagicToastExampleView()

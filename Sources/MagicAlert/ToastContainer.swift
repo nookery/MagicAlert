@@ -19,43 +19,7 @@ struct ToastContainer: View {
 
 }
 
-// MARK: - Position Extension
 
-extension View {
-    @ViewBuilder
-    func positioned(for displayMode: MagicToastDisplayMode, in geometry: GeometryProxy) -> some View {
-        switch displayMode {
-        case .overlay:
-            self
-                .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
-
-        case .banner:
-            VStack {
-                self
-                Spacer()
-            }
-            .padding(.top, 60)
-
-        case .bottom:
-            VStack {
-                Spacer()
-                self
-            }
-            .padding(.bottom, 40)
-
-        case .corner:
-            VStack {
-                HStack {
-                    Spacer()
-                    self
-                }
-                Spacer()
-            }
-            .padding(.top, 60)
-            .padding(.trailing, 20)
-        }
-    }
-}
 
 #if DEBUG
     #Preview {

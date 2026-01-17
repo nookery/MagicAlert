@@ -18,19 +18,19 @@
 
                 if showToast {
                     Group {
-                        MagicToast(
+                        Toast(
                             message: "信息提示动画",
                             icon: "info.circle",
                             style: .info
                         )
 
-                        MagicToast(
+                        Toast(
                             message: "警告提示动画",
                             icon: "exclamationmark.triangle",
                             style: .warning
                         )
 
-                        MagicToast(
+                        Toast(
                             message: "错误提示动画",
                             icon: "xmark.circle",
                             style: .error

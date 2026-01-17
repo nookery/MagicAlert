@@ -8,13 +8,13 @@
                 Text("基础样式")
                     .font(.headline)
 
-                MagicToast(
+                Toast(
                     message: "操作成功",
                     icon: "checkmark.circle",
                     style: .info
                 )
 
-                MagicToast(
+                Toast(
                     message: "点击查看详情",
                     icon: "hand.tap",
                     style: .info

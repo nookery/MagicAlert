@@ -1,6 +1,6 @@
 import SwiftUI
 
-public struct MagicToast: View {
+public struct Toast: View {
     let message: String
     let icon: String
     let style: Style

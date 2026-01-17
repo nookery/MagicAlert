@@ -10,7 +10,7 @@
 
                 Group {
                     Text("信息").font(.subheadline)
-                    MagicToast(
+                    Toast(
                         message: "这是一条提示信息",
                         icon: "info.circle",
                         style: .info
@@ -19,7 +19,7 @@
 
                 Group {
                     Text("警告").font(.subheadline)
-                    MagicToast(
+                    Toast(
                         message: "请注意这个警告",
                         icon: "exclamationmark.triangle",
                         style: .warning
@@ -28,7 +28,7 @@
 
                 Group {
                     Text("错误").font(.subheadline)
-                    MagicToast(
+                    Toast(
                         message: "出现了一个错误",
                         icon: "xmark.circle",
                         style: .error

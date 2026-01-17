@@ -8,13 +8,13 @@
                 Text("长文本")
                     .font(.headline)
 
-                MagicToast(
+                Toast(
                     message: "这是一条比较长的提示信息，用来测试 Toast 的自适应宽度和换行效果",
                     icon: "text.bubble",
                     style: .info
                 )
 
-                MagicToast(
+                Toast(
                     message: "Another long message in English to test the text wrapping and adaptive width of the toast",
                     icon: "text.bubble",
                     style: .info
