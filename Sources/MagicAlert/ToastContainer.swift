@@ -8,9 +8,15 @@ struct ToastContainer: View {
         GeometryReader { geometry in
             ZStack {
                 ForEach(toastManager.toasts) { toast in
-                    ToastView(toast: toast, onDismiss: toastManager.dismiss)
-                        .padding(.horizontal, 16)
-                        .positioned(for: toast.displayMode, in: geometry)
+                    if toast.displayMode == .banner {
+                        ToastView(toast: toast, onDismiss: toastManager.dismiss)
+                            .padding(.top, 60)
+                            .positioned(for: toast.displayMode, in: geometry)
+                    } else {
+                        ToastView(toast: toast, onDismiss: toastManager.dismiss)
+                            .padding(.horizontal, 16)
+                            .positioned(for: toast.displayMode, in: geometry)
+                    }
                 }
             }
             .animation(.spring(response: 0.6, dampingFraction: 0.8), value: toastManager.toasts)

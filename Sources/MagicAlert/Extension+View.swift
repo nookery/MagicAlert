@@ -61,7 +61,7 @@ struct MagicRootView<Content: View>: View {
 
 extension View {
     @ViewBuilder
-    func positioned(for displayMode: MagicToastDisplayMode, in geometry: GeometryProxy) -> some View {
+    func positioned(for displayMode: DisplayMode, in geometry: GeometryProxy) -> some View {
         switch displayMode {
         case .overlay:
             self
@@ -72,7 +72,6 @@ extension View {
                 self
                 Spacer()
             }
-            .padding(.top, 60)
 
         case .bottom:
             VStack {

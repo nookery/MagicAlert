@@ -107,7 +107,7 @@ public extension Image {
 }
 
 /// Toast相关的图标扩展
-public extension Image {
+extension Image {
     /// 根据Toast类型获取对应的图标
     /// - Parameter type: Toast类型
     /// - Returns: 对应的图标

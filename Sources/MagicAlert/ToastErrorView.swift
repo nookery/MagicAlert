@@ -12,7 +12,6 @@ struct ToastErrorView: View {
     /// 显示动画处理回调
     let onAppear: (() -> Void)?
 
-
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             // 错误图标和标题 + 工具栏
@@ -52,20 +51,25 @@ struct ToastErrorView: View {
 
             ScrollView {
                 VStack(alignment: .leading, spacing: 12) {
-                    // 错误描述
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("错误描述")
-                            .font(.subheadline)
-                            .foregroundStyle(.secondary)
-
-                        Text(error.localizedDescription)
-                            .font(.body)
-                            .fixedSize(horizontal: false, vertical: true)
-                    }
+                    Text(error.localizedDescription)
+                        .font(.body)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
+                .padding(.horizontal, 16)
+                .padding(.vertical, 8)
             }
         }
+        .padding(.horizontal, 20)
+        .padding(.vertical, 16)
         .applyToastStyling()
+        .frame(
+            minWidth: 300,
+            idealWidth: 450,
+            maxWidth: 600,
+            minHeight: 200,
+            idealHeight: 400,
+            maxHeight: 500
+        )
         .onAppear {
             onAppear?()
         }
@@ -73,6 +77,13 @@ struct ToastErrorView: View {
 }
 
 #if DEBUG
+    #Preview {
+        MagicRootView {
+            MagicToastExampleView()
+        }
+        .frame(width: 400, height: 600)
+    }
+
     #Preview("错误详情视图") {
         ToastErrorView(
             error: NSError(
@@ -82,7 +93,7 @@ struct ToastErrorView: View {
                     NSLocalizedDescriptionKey: "网络连接失败，无法访问服务器端点",
                     NSLocalizedFailureReasonErrorKey: "服务器响应超时，可能是网络不稳定、服务器维护或防火墙阻拦",
                     NSLocalizedRecoverySuggestionErrorKey: "请检查网络连接状态，确认VPN设置，稍后重试。如果问题持续存在，请联系技术支持团队。",
-                    NSHelpAnchorErrorKey: "访问帮助中心获取更多网络故障排除信息和常见问题解答"
+                    NSHelpAnchorErrorKey: "访问帮助中心获取更多网络故障排除信息和常见问题解答",
                 ]
             ),
             title: "网络请求失败",

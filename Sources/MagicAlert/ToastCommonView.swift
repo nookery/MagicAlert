@@ -4,7 +4,7 @@ import SwiftUI
 /// 用于显示标准的Toast内容，包括图标、标题、副标题和进度条
 struct ToastCommonView: View {
     /// Toast模型数据
-    let toast: MagicToastModel
+    let toast: ToastModel
     /// 进度条进度（0.0-1.0）
     let progress: Double
     /// 是否可见（用于加载动画）
@@ -89,7 +89,7 @@ struct ToastCommonView: View {
 
 #if DEBUG
     #Preview("通用Toast视图") {
-        let toast = MagicToastModel(
+        let toast = ToastModel(
             type: .success,
             title: "操作成功",
             subtitle: "数据已保存",
@@ -114,7 +114,7 @@ struct ToastCommonView: View {
     }
 
     #Preview("带工具栏的Toast") {
-        let toast = MagicToastModel(
+        let toast = ToastModel(
             type: .info,
             title: "需要确认",
             subtitle: "此操作不可撤销",

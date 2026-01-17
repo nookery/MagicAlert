@@ -4,7 +4,7 @@ import SwiftUI
 /// 支持标准Toast和错误详情两种显示模式，根据Toast类型自动选择合适的布局
 struct ToastView: View {
     /// 要显示的Toast模型数据
-    let toast: MagicToastModel
+    let toast: ToastModel
     /// 关闭Toast的回调函数
     let onDismiss: (UUID) -> Void
 

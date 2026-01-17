@@ -7,14 +7,14 @@ public class MagicToastManager: ObservableObject {
     /// 共享实例，便于全局访问
     public static let shared = MagicToastManager()
 
-    @Published private(set) var toasts: [MagicToastModel] = []
+    @Published private(set) var toasts: [ToastModel] = []
     private var timers: [UUID: Timer] = [:]
 
     private init() {}
 
     // MARK: - 显示Toast
 
-    public func show(_ toast: MagicToastModel) {
+    func show(_ toast: ToastModel) {
         DispatchQueue.main.async {
             // 移除相同类型的已存在toast
             self.toasts.removeAll { existingToast in
@@ -38,29 +38,29 @@ public class MagicToastManager: ObservableObject {
 
     /// 显示信息提示
     public func info(_ title: String, subtitle: String? = nil, duration: TimeInterval = 3.0) {
-        let toast = MagicToastModel(type: .info, title: title, subtitle: subtitle, duration: duration)
+        let toast = ToastModel(type: .info, title: title, subtitle: subtitle, duration: duration)
         show(toast)
     }
 
     /// 显示成功提示
     public func success(_ title: String, subtitle: String? = nil, duration: TimeInterval = 3.0) {
-        let toast = MagicToastModel(type: .success, title: title, subtitle: subtitle, duration: duration)
+        let toast = ToastModel(type: .success, title: title, subtitle: subtitle, duration: duration)
         show(toast)
     }
 
     /// 显示警告提示
     public func warning(_ title: String, subtitle: String? = nil, duration: TimeInterval = 4.0) {
-        let toast = MagicToastModel(type: .warning, title: title, subtitle: subtitle, duration: duration)
+        let toast = ToastModel(type: .warning, title: title, subtitle: subtitle, duration: duration)
         show(toast)
     }
 
     /// 显示错误提示
     public func error(_ title: String, subtitle: String? = nil, duration: TimeInterval = 0, autoDismiss: Bool = false) {
-        let toast = MagicToastModel(
+        let toast = ToastModel(
             type: .error,
             title: title,
             subtitle: subtitle,
-            displayMode: .banner,
+            displayMode: .overlay,
             duration: duration,
             autoDismiss: autoDismiss,
             tapToDismiss: true
@@ -77,7 +77,7 @@ public class MagicToastManager: ObservableObject {
     public func error(_ error: Error, title: String? = nil, duration: TimeInterval = 0, autoDismiss: Bool = false) {
         // 使用详细视图显示错误
         let errorTitle = title ?? "错误"
-        let toast = MagicToastModel(
+        let toast = ToastModel(
             type: .errorDetail(error: error, title: errorTitle),
             title: errorTitle,
             subtitle: nil,
@@ -145,7 +145,7 @@ public class MagicToastManager: ObservableObject {
 
     /// 显示加载中提示
     public func loading(_ title: String, subtitle: String? = nil) {
-        let toast = MagicToastModel(
+        let toast = ToastModel(
             type: .loading,
             title: title,
             subtitle: subtitle,
@@ -157,15 +157,15 @@ public class MagicToastManager: ObservableObject {
     }
 
     /// 显示自定义提示
-    public func custom(
+    func custom(
         systemImage: String,
         color: Color,
         title: String,
         subtitle: String? = nil,
-        displayMode: MagicToastDisplayMode = .overlay,
+        displayMode: DisplayMode = .overlay,
         duration: TimeInterval = 3.0
     ) {
-        let toast = MagicToastModel(
+        let toast = ToastModel(
             type: .custom(systemImage: systemImage, color: color),
             title: title,
             subtitle: subtitle,
