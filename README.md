@@ -12,6 +12,10 @@ A SwiftUI-based toast notification system for iOS and macOS applications.
 - **Error Handling**: Built-in error view component
 - **SwiftUI Native**: Fully built with SwiftUI for modern apps
 
+## Screenshots
+
+![MagicAlert Demo](docs/hero.png)
+
 ## Installation
 
 ### Swift Package Manager

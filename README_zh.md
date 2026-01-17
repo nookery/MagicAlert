@@ -11,6 +11,10 @@
 - **错误处理**: 内置错误视图组件
 - **原生SwiftUI**: 完全使用SwiftUI构建，适用于现代应用
 
+## 截图
+
+![MagicAlert 演示](docs/hero.png)
+
 ## 安装
 
 ### Swift Package Manager
