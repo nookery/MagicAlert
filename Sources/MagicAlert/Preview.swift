@@ -131,6 +131,7 @@ private struct AnimationToastPreview: View {
 
 // MARK: - Main Preview
 
+/// 主要的Toast预览视图，包含所有子预览的Tab导航
 struct MagicToastPreview: View {
     var body: some View {
         ScrollView {
@@ -142,21 +143,18 @@ struct MagicToastPreview: View {
                     }
 
                 StyleToastPreview()
-
                     .tabItem {
                         Image(systemName: "2.circle.fill")
                         Text("样式")
                     }
 
                 LongTextToastPreview()
-
                     .tabItem {
                         Image(systemName: "3.circle.fill")
                         Text("长文本")
                     }
 
                 AnimationToastPreview()
-
                     .tabItem {
                         Image(systemName: "4.circle.fill")
                         Text("动画")

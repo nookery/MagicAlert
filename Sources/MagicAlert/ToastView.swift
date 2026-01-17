@@ -1,7 +1,7 @@
 import SwiftUI
 
 /// 单个Toast视图
-struct MagicToastView: View {
+struct ToastView: View {
     let toast: MagicToastModel
     let onDismiss: (UUID) -> Void
 

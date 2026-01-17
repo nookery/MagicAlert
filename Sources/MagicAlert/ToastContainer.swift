@@ -1,7 +1,7 @@
 import SwiftUI
 
 /// Toast容器视图
-struct MagicToastContainer: View {
+struct ToastContainer: View {
     @ObservedObject var toastManager: MagicToastManager
 
     var body: some View {
@@ -9,7 +9,7 @@ struct MagicToastContainer: View {
             ZStack {
                 // 普通Toast视图
                 ForEach(toastManager.toasts.filter { !isErrorDetailToast($0) }) { toast in
-                    MagicToastView(toast: toast, onDismiss: toastManager.dismiss)
+                    ToastView(toast: toast, onDismiss: toastManager.dismiss)
                         .padding(.horizontal, 16)
                         .positioned(for: toast.displayMode, in: geometry)
                 }
