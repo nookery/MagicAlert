@@ -7,39 +7,16 @@ struct ToastContainer: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                // 普通Toast视图
-                ForEach(toastManager.toasts.filter { !isErrorDetailToast($0) }) { toast in
+                ForEach(toastManager.toasts) { toast in
                     ToastView(toast: toast, onDismiss: toastManager.dismiss)
                         .padding(.horizontal, 16)
                         .positioned(for: toast.displayMode, in: geometry)
-                }
-
-                // 错误详情视图
-                ForEach(toastManager.toasts.filter { isErrorDetailToast($0) }, id: \.id) { toast in
-                    if case let .errorDetail(error, title) = toast.type {
-                        MagicErrorView(
-                            error: error,
-                            title: title,
-                            onDismiss: {
-                                toastManager.dismiss(toast.id)
-                            }
-                        )
-                        .frame(width: geometry.size.width * 0.8)
-                        .frame(height: geometry.size.height * 0.8)
-                        .positioned(for: toast.displayMode, in: geometry)
-                    }
                 }
             }
             .animation(.spring(response: 0.6, dampingFraction: 0.8), value: toastManager.toasts)
         }
     }
 
-    private func isErrorDetailToast(_ toast: MagicToastModel) -> Bool {
-        if case .errorDetail = toast.type {
-            return true
-        }
-        return false
-    }
 }
 
 // MARK: - Position Extension
