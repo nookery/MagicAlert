@@ -6,6 +6,7 @@ on:
     paths-ignore:
       - "README.md"
       - "README_zh.md"
+      - "LICENSE"
 
 permissions:
   contents: write
