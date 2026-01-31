@@ -1,6 +1,6 @@
-import SwiftUI
-
 #if DEBUG
+    import SwiftUI
+
     struct MagicToastExampleView: View {
         var body: some View {
             VStack(spacing: 20) {
