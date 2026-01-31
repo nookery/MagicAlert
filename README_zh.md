@@ -35,7 +35,7 @@ dependencies: [
 
 ## 使用方法
 
-在您的根视图上添加 `.withMagicToast()` 修饰符，然后使用 `MagicMessageProvider.shared` 显示消息：
+在您的根视图上添加 `.withMagicToast()` 修饰符，然后使用全局函数显示消息：
 
 ```swift
 import SwiftUI
@@ -45,29 +45,48 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Button("显示成功消息") {
-                MagicMessageProvider.shared.success("操作成功")
+                alert_success("操作成功")
             }
 
             Button("显示错误消息") {
-                MagicMessageProvider.shared.error("操作失败")
+                alert_error("操作失败", autoDismiss: false)
             }
 
             Button("显示信息") {
-                MagicMessageProvider.shared.info("这是一条信息")
+                alert_info("这是一条信息", subtitle: "详细描述")
             }
 
             Button("显示警告") {
-                MagicMessageProvider.shared.warning("请注意")
+                alert_warning("请注意")
             }
 
             Button("显示加载中") {
-                MagicMessageProvider.shared.loading("正在处理...")
+                alert_loading("正在处理...")
+            }
+
+            Button("隐藏加载") {
+                alert_dismiss_loading()
+            }
+
+            Button("隐藏所有") {
+                alert_dismiss_all()
             }
         }
         .withMagicToast() // 启用Toast功能
     }
 }
 ```
+
+**可用的全局函数：**
+
+- `alert_info(_ title: String, subtitle: String? = nil, duration: TimeInterval = 3.0)` - 显示信息提示
+- `alert_success(_ title: String, subtitle: String? = nil, duration: TimeInterval = 3.0)` - 显示成功提示
+- `alert_warning(_ title: String, subtitle: String? = nil, duration: TimeInterval = 4.0)` - 显示警告提示
+- `alert_error(_ title: String, subtitle: String? = nil, duration: TimeInterval = 0, autoDismiss: Bool = false)` - 显示错误文本
+- `alert_error(_ error: Error, title: String? = nil, duration: TimeInterval = 0, autoDismiss: Bool = false)` - 显示错误对象
+- `alert_loading(_ title: String, subtitle: String? = nil)` - 显示加载中提示
+- `alert_dismiss_loading()` - 隐藏加载中提示
+- `alert_dismiss_all()` - 隐藏所有提示
 
 ## 要求
 

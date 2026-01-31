@@ -2,28 +2,30 @@ import SwiftUI
 
 #if DEBUG
     struct MagicToastExampleView: View {
-        private var messageProvider = MagicMessageProvider.shared
-
         var body: some View {
             VStack(spacing: 20) {
+                Text("全局函数示例")
+                    .font(.title)
+                    .padding(.bottom)
+
                 Button("信息 - 短文字") {
-                    messageProvider.info("这是信息", subtitle: "详细描述")
+                    alert_info("这是信息", subtitle: "详细描述")
                 }
 
                 Button("信息 - 长文字") {
-                    messageProvider.info("开始下载你选择的文档")
+                    alert_info("开始下载你选择的文档")
                 }
 
                 Button("成功") {
-                    messageProvider.success("操作成功")
+                    alert_success("操作成功")
                 }
 
                 Button("警告") {
-                    messageProvider.warning("注意事项")
+                    alert_warning("注意事项")
                 }
 
                 Button("错误 - Toast 视图") {
-                    messageProvider.error("操作失败", autoDismiss: false)
+                    alert_error("操作失败", autoDismiss: false)
                 }
 
                 Button("错误 - 详细视图") {
@@ -38,15 +40,19 @@ import SwiftUI
                             NSHelpAnchorErrorKey: "访问帮助中心获取更多网络故障排除信息和常见问题解答",
                         ]
                     )
-                    messageProvider.error(customError, title: "网络请求失败")
+                    alert_error(customError, title: "网络请求失败")
                 }
 
                 Button("加载中") {
-                    messageProvider.loading("正在处理...")
+                    alert_loading("正在处理...")
                 }
 
                 Button("隐藏加载") {
-                    messageProvider.hideLoading()
+                    alert_dismiss_loading()
+                }
+
+                Button("隐藏所有") {
+                    alert_dismiss_all()
                 }
             }
             .buttonStyle(.bordered)

@@ -36,7 +36,7 @@ Or add it directly in Xcode:
 
 ## Usage
 
-Add the `.withMagicToast()` modifier to your root view and use `MagicMessageProvider.shared` to display messages:
+Add the `.withMagicToast()` modifier to your root view and use global functions to display messages:
 
 ```swift
 import SwiftUI
@@ -46,29 +46,48 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Button("Show Success") {
-                MagicMessageProvider.shared.success("Operation successful")
+                alert_success("Operation successful")
             }
 
             Button("Show Error") {
-                MagicMessageProvider.shared.error("Operation failed")
+                alert_error("Operation failed", autoDismiss: false)
             }
 
             Button("Show Info") {
-                MagicMessageProvider.shared.info("This is an info message")
+                alert_info("This is an info message", subtitle: "More details")
             }
 
             Button("Show Warning") {
-                MagicMessageProvider.shared.warning("Please be careful")
+                alert_warning("Please be careful")
             }
 
             Button("Show Loading") {
-                MagicMessageProvider.shared.loading("Processing...")
+                alert_loading("Processing...")
+            }
+
+            Button("Dismiss Loading") {
+                alert_dismiss_loading()
+            }
+
+            Button("Dismiss All") {
+                alert_dismiss_all()
             }
         }
         .withMagicToast() // Enable toast functionality
     }
 }
 ```
+
+**Available Global Functions:**
+
+- `alert_info(_ title: String, subtitle: String? = nil, duration: TimeInterval = 3.0)` - Show info toast
+- `alert_success(_ title: String, subtitle: String? = nil, duration: TimeInterval = 3.0)` - Show success toast
+- `alert_warning(_ title: String, subtitle: String? = nil, duration: TimeInterval = 4.0)` - Show warning toast
+- `alert_error(_ title: String, subtitle: String? = nil, duration: TimeInterval = 0, autoDismiss: Bool = false)` - Show error text
+- `alert_error(_ error: Error, title: String? = nil, duration: TimeInterval = 0, autoDismiss: Bool = false)` - Show error object
+- `alert_loading(_ title: String, subtitle: String? = nil)` - Show loading toast
+- `alert_dismiss_loading()` - Dismiss loading toast
+- `alert_dismiss_all()` - Dismiss all toasts
 
 ## Requirements
 
